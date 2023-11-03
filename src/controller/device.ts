@@ -7,6 +7,7 @@ import { createDeviceData } from '../common/createData'
 export const getAllDevice: RequestHandler = async (req, res) => {
   const col = await getCollection<Device>()
   const result = await col?.find().toArray()
+  console.log(`get`)
   res.json(result)
 }
 
@@ -53,5 +54,11 @@ export const autoCreateDevice: RequestHandler = async (req, res) => {
   }
   const result = await col?.insertMany(dataList)
   await closeDB()
+  res.json(result)
+}
+
+export const deleteDevice: RequestHandler = async (req, res) => {
+  const col = await getCollection<Device>()
+  const result = await col?.find().toArray()
   res.json(result)
 }
